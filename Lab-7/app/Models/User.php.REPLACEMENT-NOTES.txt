@@ -1,0 +1,10 @@
+IMPORTANT: Do not blindly replace a default Laravel User.php if it already contains traits or configuration.
+Laravel's default User model should include:
+- use Illuminate\Foundation\Auth\User as Authenticatable;
+- use Illuminate\Notifications\Notifiable;
+- class User extends Authenticatable
+- protected $fillable = ['name', 'email', 'password'];
+- protected $hidden = ['password', 'remember_token'];
+- protected function casts(): array { return ['email_verified_at' => 'datetime', 'password' => 'hashed']; }
+
+The default Laravel 12 User model already supports these fields. If your model was customized, add name/email/password to $fillable while preserving existing code.
